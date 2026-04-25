@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Avatar from "@/assets/user.png";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   return (
@@ -10,13 +11,13 @@ const Navbar = () => {
 
         <ul className="flex items-center justify-center gap-3.5 text-gray-600">
           <li>
-            <Link href="/">Home</Link>
+            <NavLink href="/">Home</NavLink>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <NavLink href="/about">About</NavLink>
           </li>
           <li>
-            <Link href="/career">Career</Link>
+            <NavLink href="/career">Career</NavLink>
           </li>
         </ul>
         <div className="flex justify-center items-center gap-3 ">
