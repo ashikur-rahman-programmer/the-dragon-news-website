@@ -1,5 +1,5 @@
-import Navbar from "@/app/components/shared/Navbar";
-import Header from "../components/shared/Header";
+import Header from "@/components/shared/Header";
+import Navbar from "@/components/shared/Navbar";
 
 const MainLayout = ({ children }) => {
   return (
