@@ -18,12 +18,12 @@ const CategoryNews = async ({ params }) => {
   const categories = await allCategories();
   const news = await allCategoriesNews(id);
   return (
-    <div className="container mx-auto grid grid-cols-12 gap-4">
-      <div className="col-span-3 space-y-3">
+    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <div className="lg:col-span-3 space-y-3">
         <h2 className="text-xl font-semibold ">All Categories</h2>
         <LeftSideBar categories={categories} activeId={id} />
       </div>
-      <div className="col-span-6 ">
+      <div className="lg:col-span-6 ">
         <h2 className="text-xl font-semibold mb-4">Dragon News Home</h2>
         {news.length > 0 ? (
           news.map((n, index) => <NewsCard key={index} news={n} />)
@@ -33,7 +33,7 @@ const CategoryNews = async ({ params }) => {
           </h2>
         )}
       </div>
-      <div className="col-span-3 ">
+      <div className="lg:col-span-3 ">
         <RightSideBar />
       </div>
     </div>

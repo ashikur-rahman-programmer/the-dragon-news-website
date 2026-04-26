@@ -13,18 +13,18 @@ const HomePage = async () => {
   const news = await allCategoriesNews("01");
 
   return (
-    <div className="container mx-auto grid grid-cols-12 gap-4">
-      <div className="col-span-3 space-y-3">
+    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <div className="lg:col-span-3 space-y-3">
         <h2 className="text-xl font-semibold ">All Categories</h2>
         <LeftSideBar categories={categories} activeId={"01"} />
       </div>
-      <div className="col-span-6 ">
+      <div className="lg:col-span-6 ">
         <h2 className="text-xl font-semibold mb-4">Dragon News Home</h2>
         {news.map((n, index) => (
           <NewsCard key={index} news={n} />
         ))}
       </div>
-      <div className="col-span-3 ">
+      <div className="lg:col-span-3 ">
         <RightSideBar />
       </div>
     </div>
