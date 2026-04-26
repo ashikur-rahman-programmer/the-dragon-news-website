@@ -1,20 +1,16 @@
 import LeftSideBar from "@/components/homePage/news/LeftSideBar";
 import NewsCard from "@/components/homePage/news/NewsCard";
 import RightSideBar from "@/components/homePage/news/RightSideBar";
+import { allCategories, allCategoriesNews } from "@/lib/data";
 
-const allCategories = async () => {
-  const res = await fetch(
-    "https://openapi.programming-hero.com/api/news/categories",
-  );
-  const data = await res.json();
-  return data.data.news_category;
-};
-const allCategoriesNews = async (categoryId) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/category/${categoryId}`,
-  );
-  const data = await res.json();
-  return data.data;
+export const generateMetadata = async ({ params }) => {
+  const { id } = await params;
+  const categories = await allCategories();
+  const category = categories.find((c) => c.category_id === id);
+  return {
+    title: `${category ? category.category_name : "Category"} - Dragon News`,
+    description: `Latest news in the ${category ? category.category_name : "selected"} category.`,
+  };
 };
 
 const CategoryNews = async ({ params }) => {

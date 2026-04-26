@@ -2,9 +2,10 @@ import Image from "next/image"; // Next.js Image import
 import React from "react";
 import { FaRegBookmark, FaStar, FaShareAlt } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
+import Link from "next/link";
 
 const NewsCard = ({ news }) => {
-  const { title, author, thumbnail_url, details, rating, total_view } = news;
+  const { title, author, image_url, details, rating, total_view } = news;
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm mb-6">
@@ -42,14 +43,13 @@ const NewsCard = ({ news }) => {
 
       {/* Featured Image - Next.js Image Optimization */}
       <div className="px-5">
-        <div className="relative w-full h-[300px]">
+        <div className=" w-full">
           <Image
-            src={thumbnail_url}
+            src={image_url}
             alt={title}
-            fill
-            priority={true} // First image gulo fast load korar jonno
-            className="object-cover rounded-md"
-            sizes="(max-width: 768px) 100vw, 50vw" // Responsive optimization
+            width={590}
+            height={300}
+            className="object-cover rounded-md w-full"
           />
         </div>
       </div>
@@ -59,9 +59,11 @@ const NewsCard = ({ news }) => {
         <p className="text-[#706F6F] text-sm leading-6 line-clamp-4">
           {details}
         </p>
-        <button className="mt-2 text-[#FF8C47] font-bold text-sm hover:underline">
-          Read More
-        </button>
+        <Link href={`/news/${news._id}`} className="block">
+          <button className="mt-2 text-[#FF8C47] font-bold text-sm hover:underline">
+            Read More
+          </button>
+        </Link>
       </div>
 
       <hr className="mx-5 border-gray-100" />

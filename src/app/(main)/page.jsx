@@ -1,22 +1,13 @@
 import LeftSideBar from "@/components/homePage/news/LeftSideBar";
 import NewsCard from "@/components/homePage/news/NewsCard";
 import RightSideBar from "@/components/homePage/news/RightSideBar";
+import { allCategories, allCategoriesNews } from "@/lib/data";
 
-const allCategories = async () => {
-  const res = await fetch(
-    "https://openapi.programming-hero.com/api/news/categories",
-  );
-  const data = await res.json();
-  return data.data.news_category;
+export const metadata = {
+  title: "Dragon News - Home",
+  description: "Stay updated with the latest news from Dragon News.",
 };
 
-const allCategoriesNews = async (categoryId) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/category/${categoryId}`,
-  );
-  const data = await res.json();
-  return data.data;
-};
 const HomePage = async () => {
   const categories = await allCategories();
   const news = await allCategoriesNews("01");
