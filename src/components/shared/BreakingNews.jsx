@@ -25,7 +25,7 @@ const BreakingNews = () => {
         <Marquee pauseOnHover={true}>
           {news.map((item) => (
             <p key={item._id} className="px-8">
-              Breaking News: {item.title}
+              {item.title}
             </p>
           ))}
         </Marquee>
