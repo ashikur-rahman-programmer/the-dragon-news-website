@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { useForm } from "react-hook-form";
 // export const metadata = {
 //   title: "Register - Dragon News",
@@ -14,9 +15,25 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
 
-  const handleRegister = (data) => {
-    console.log("Register data:", data);
-    // Implement your register logic here, such as calling an API or validating credentials
+  const handleRegister = async (data) => {
+    const { name, photoUrl, email, password } = data;
+    const { data: user, error } = await authClient.signUp.email({
+      name: name,
+      photoUrl: photoUrl,
+      email: email,
+      password: password,
+      callbackURL: "/",
+    });
+    if (error) {
+      alert("Registration failed: " + error.message);
+      return;
+    }
+    if (user) {
+      alert(
+        "Registration successful! Please check your email to verify your account.",
+      );
+    }
+    console.log(user, error);
   };
 
   return (

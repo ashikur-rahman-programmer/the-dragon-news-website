@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 // export const metadata = {
@@ -11,13 +12,19 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const handleLogin = (data) => {
-    console.log("Login data:", data);
-    // Implement your login logic here, such as calling an API or validating credentials
+  const handleLogin = async (data) => {
+    const { email, password } = data;
+    const { data: user, error } = await authClient.signIn.email({
+      email: email,
+      password: password,
+      remember: true,
+      callbackURL: "/",
+    });
+
+    console.log(user, error);
   };
 
   return (
@@ -43,6 +50,11 @@ const LoginPage = () => {
               placeholder="Enter your email address"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -55,6 +67,11 @@ const LoginPage = () => {
               placeholder="Enter your password"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <div className="pt-2">
