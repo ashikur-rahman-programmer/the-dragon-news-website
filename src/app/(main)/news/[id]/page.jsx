@@ -18,7 +18,6 @@ const DetailsPage = async ({ params }) => {
 
   const newsDetails = await fetchNewsDetails(id);
   const { title, image_url, details, category_id } = newsDetails;
-  console.log(image_url);
 
   return (
     <div className="container mx-auto py-8">

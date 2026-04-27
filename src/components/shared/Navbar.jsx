@@ -9,7 +9,6 @@ import { Spinner } from "@heroui/react";
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
-  console.log(user);
 
   return (
     <div className="container mx-auto ">
