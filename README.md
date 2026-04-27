@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <img src="assets/logo.png">
 
-## Getting Started
+Dragoon News is a responsive front-end web application build with react that delivers real-time news articles on a variety of topics, complete with user authentication for personalized access. Built with modern web technologies, the app ensures a seamless user experience across devices and secure login functionality using mongodb authentication.let's build the project together. 😎
 
-First, run the development server:
+[Live link :] https://the-dragon-news-website.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **📰 Dynamic News Feed:** Real-time news delivery system fetching categorized content efficiently from MongoDB.
+- **🔐 Enterprise-Grade Auth:** Secure authentication powered by **Better Auth**, featuring Social Logins (Google/GitHub) and database-persisted sessions.
+- **🎨 Premium UI/UX:** A sleek, modern interface built with **HeroUI** and **Tailwind CSS 4**, focused on accessibility and performance.
+- **⚡ Optimized Performance:** Leveraging Next.js 16 **Server Components** for faster First Contentful Paint (FCP) and better SEO.
+- **📱 Fully Responsive:** Mobile-first architecture ensuring a seamless experience from smartphones to large desktop monitors.
+- **🚀 Interactive Elements:** Smooth breaking news tickers using `react-fast-marquee` and high-quality iconography via `Iconify`.
+- **📝 Validated Workflows:** Robust form handling and client-side validation using **React Hook Form**.
+- **📅 Intelligent Date Handling:** Dynamic date formatting and interaction tracking powered by `date-fns`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 🛠️ Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Layer              | Technology                    |
+| :----------------- | :---------------------------- |
+| **Framework**      | Next.js (App Router)          |
+| **Library**        | React                         |
+| **Styling**        | Tailwind CSS                  |
+| **UI Components**  | HeroUI                        |
+| **Authentication** | Better Auth                   |
+| **Database**       | MongoDB                       |
+| **Form Handling**  | React Hook Form               |
+| **Icons**          | Iconify & React Icons         |
+| **Utilities**      | Date-fns & React Fast Marquee |
 
-## Learn More
+## Layouts & Design
 
-To learn more about Next.js, take a look at the following resources:
+There will be three layour for the project. watch below designs to understand layout structure/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### News Layout
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ <img src="https://i.ibb.co.com/sJFwsTBZ/home-layout.png"/>
 
-## Deploy on Vercel
+### News-Details Layout
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ <img src="https://i.ibb.co.com/4ZJ3wBfq/news-details-layout.png"/>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Auth Layout
+
+<table>
+ <tr>
+   <td> <img  src="https://i.ibb.co.com/BVtvwgbN/auth-layout-login.png"/></td>
+   <td> <img src="https://i.ibb.co.com/27Rmt7C5/auth-layout-register.png"/></td>
+ </tr> 
+</table>
