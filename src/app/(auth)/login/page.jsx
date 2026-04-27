@@ -27,7 +27,10 @@ const LoginPage = () => {
       callbackURL: "/",
     });
 
-    console.log(user, error);
+    // console.log(user, error);
+    if (error) {
+      alert("Login failed: " + error.message);
+    }
   };
 
   return (
