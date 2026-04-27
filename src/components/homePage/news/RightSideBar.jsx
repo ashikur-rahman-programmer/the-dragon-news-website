@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 
@@ -6,6 +7,11 @@ const RightSideBar = () => {
   const handleGoogleSignIn = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
+    });
+  };
+  const handleGitHubSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "github",
     });
   };
   return (
@@ -20,7 +26,11 @@ const RightSideBar = () => {
           <Icon icon="devicon:google" />
           Sign in with Google
         </Button>
-        <Button className="w-full" variant="tertiary">
+        <Button
+          onClick={handleGitHubSignIn}
+          className="w-full"
+          variant="tertiary"
+        >
           <Icon icon="mdi:github" />
           Sign in with GitHub
         </Button>
