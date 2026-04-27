@@ -2,7 +2,9 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 // export const metadata = {
 //   title: "Login - Dragon News",
 //   description:
@@ -15,11 +17,12 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
+  const [isShowingPassword, setIsShowingPassword] = useState(false);
+
   const handleLogin = async (data) => {
-    const { email, password } = data;
     const { data: user, error } = await authClient.signIn.email({
-      email: email,
-      password: password,
+      email: data.email,
+      password: data.password,
       remember: true,
       callbackURL: "/",
     });
@@ -57,16 +60,23 @@ const LoginPage = () => {
             )}
           </div>
 
-          <div>
+          <div className="relative">
             <label className="block text-base font-bold text-[#403F3F] mb-2">
               Password
             </label>
             <input
-              type="password"
+              type={isShowingPassword ? "text" : "password"}
               {...register("password", { required: "Password is required" })}
               placeholder="Enter your password"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            <span
+              className="absolute right-3 top-12
+               text-sm text-[#706F6F] cursor-pointer"
+              onClick={() => setIsShowingPassword(!isShowingPassword)}
+            >
+              {isShowingPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
                 {errors.password.message}

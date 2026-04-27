@@ -1,7 +1,9 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 // export const metadata = {
 //   title: "Register - Dragon News",
 //   description:
@@ -11,29 +13,33 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
+  const [isShowingPassword, setIsShowingPassword] = useState(false);
+
   const handleRegister = async (data) => {
-    const { name, photoUrl, email, password } = data;
+    // const { name, image, email, password } = data;
+
+    // console.log("Registering user with data:", data);
+
     const { data: user, error } = await authClient.signUp.email({
-      name: name,
-      photoUrl: photoUrl,
-      email: email,
-      password: password,
-      callbackURL: "/",
+      name: data.name,
+      image: data.image,
+      email: data.email,
+      password: data.password,
+      callbackURL: "/login",
     });
     if (error) {
       alert("Registration failed: " + error.message);
       return;
     }
-    if (user) {
-      alert(
-        "Registration successful! Please check your email to verify your account.",
-      );
-    }
-    console.log(user, error);
+    // if (user) {
+    //   alert(
+    //     "Registration successful! Please check your email to verify your account.",
+    //   );
+    // }
+    // console.log(user, error);
   };
 
   return (
@@ -59,6 +65,9 @@ const RegisterPage = () => {
               placeholder="Enter your name"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
           </div>
           <div>
             <label className="block text-base font-bold text-[#403F3F] mb-2">
@@ -66,10 +75,15 @@ const RegisterPage = () => {
             </label>
             <input
               type="text"
-              {...register("photoUrl", { required: "Photo URL is required" })}
+              {...register("image", { required: "Photo URL is required" })}
               placeholder="Enter your photo URL"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            {errors.image && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.image.message}
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-base font-bold text-[#403F3F] mb-2">
@@ -81,18 +95,35 @@ const RegisterPage = () => {
               placeholder="Enter your email address"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
-          <div>
+          <div className="relative">
             <label className="block text-base font-bold text-[#403F3F] mb-2">
               Password
             </label>
             <input
-              type="password"
+              type={isShowingPassword ? "text" : "password"}
               {...register("password", { required: "Password is required" })}
               placeholder="Enter your password"
               className="w-full px-4 py-3 bg-[#F3F3F3] border-none outline-none focus:ring-1 focus:ring-gray-300"
             />
+            <span
+              className="absolute right-3 top-12
+               text-sm text-[#706F6F] cursor-pointer"
+              onClick={() => setIsShowingPassword(!isShowingPassword)}
+            >
+              {isShowingPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <div className="pt-2">
